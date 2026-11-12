@@ -1,2 +1,88 @@
-# modelagem-bd-ecommerce-bleachart
-Projeto de Modelagem de Banco de Dados Relacional para o e-commerce de vestuário personalizado BleachArt (Minimundo, DER, Normalização e SQL).
+# 🗄️ Modelagem de Banco de Dados — E-commerce 'BleachArt'
+
+Projeto completo de concepção, análise de requisitos e modelagem de banco de dados relacional para uma loja virtual especializada em vestuário personalizado e peças artesanais exclusivas.
+
+> **Status do Projeto:** 🚧 Em desenvolvimento contínuo (Etapa 1 concluída)
+
+---
+
+## 🗺️ Roadmap do Projeto
+
+- [x] **Etapa 1:** Definição do Minimundo, Escopo, Atores, Processos e Análise de Dados
+- [ ] **Etapa 2:** Modelagem Conceitual (Diagrama Entidade-Relacionamento - DER)
+- [ ] **Etapa 3:** Modelagem Lógica e Normalização (1NF, 2NF e 3NF)
+- [ ] **Etapa 4:** Implementação Física (Scripts DDL `CREATE TABLE`, DML `INSERT` e Consultas `SELECT`)
+
+---
+
+## 🎯 1. Visão Geral e Objetivos
+
+Este projeto consiste na arquitetura de dados para gerenciar o catálogo de peças exclusivas, o estoque e as vendas online da loja de vestuário personalizado **'BleachArt'**. O sistema atende clientes interessados em moda artesanal e administradores responsáveis pela operação do e-commerce, centralizando pedidos, pagamentos e entregas.
+
+### Objetivos Principais
+- **Gerenciar** o catálogo de peças exclusivas, controlando tamanhos, preços e disponibilidade em estoque em tempo real.
+- **Registrar** e acompanhar todo o ciclo de vida dos pedidos online, desde a compra até a confirmação do pagamento.
+- **Centralizar** o cadastro de clientes e endereços para otimizar o processo de envio e o rastreamento das entregas.
+
+---
+
+## 📐 2. Definição de Escopo
+
+| Escopo Incluso (O que o sistema FAZ) | Escopo Excluso (Fora da fase inicial) |
+| :--- | :--- |
+| Cadastro de clientes (CPF, e-mail, telefone) e múltiplos endereços. | Gestão de produção artesanal, insumos, tintas e fornecedores. |
+| Catálogo de produtos (categoria, tamanho, preço, peça única e estoque). | Emissão fiscal automatizada (NF-e). |
+| Fluxo completo de pedidos, itens vendidos e histórico de preços. | Integração em tempo real com APIs de frete/transportadoras. |
+| Registro de transações financeiras e status de pagamento. | Processamento interno de cartões (armazena apenas retorno do gateway). |
+| Controle logístico de envio e códigos de rastreamento. | Folha de pagamento, fluxo de caixa contábil e cupons complexos. |
+
+---
+
+## 👥 3. Atores e Perfis de Uso
+
+- **Cliente:** Cria e atualiza cadastro, gerencia endereços, consulta catálogo, realiza pedidos, informa pagamento e acompanha entregas.
+- **Administrador (Lojista):** Gerencia produtos e estoque, acompanha pedidos, atualiza status de envio e consulta relatórios de vendas.
+- **Gateway de Pagamento (Sistema Externo):** Processa transações financeiras (PIX, cartão, boleto) e retorna o status de aprovação ao banco.
+
+---
+
+## ⚙️ 4. Processos Principais (Fluxo de Dados)
+
+1. **Cadastro de Cliente e Endereço:** Coleta dados pessoais e de entrega, valida unicidade de CPF/e-mail e gera identificadores únicos (`ClienteID` e `EnderecoID`).
+2. **Gestão de Catálogo:** Coleta especificações da peça artesanal, valida campos obrigatórios e preço unitário, gerando o `ProdutoID` na vitrine.
+3. **Pedido e Confirmação de Pagamento:** Valida estoque, calcula total, gera `PedidoID` ("Aguardando Pagamento") e registra itens com preço histórico. Após retorno do gateway, registra `PagamentoID`, altera status para "Pago" e realiza baixa automática no estoque.
+
+---
+
+## 🧱 5. Levantamento Preliminar de Entidades
+
+| Entidade | Descrição e Papel no Sistema |
+| :--- | :--- |
+| **`CLIENTE`** | Identifica unicamente os compradores e mantém dados de contato e histórico. |
+| **`ENDERECO`** | Armazena múltiplos locais de entrega vinculados a cada cliente. |
+| **`PRODUTO`** | Controla o catálogo de peças exclusivas, especificações, preços e estoque. |
+| **`PEDIDO`** | Registra a transação de compra conectando cliente, endereço e status operacional. |
+| **`ITEM_PEDIDO`** | Entidade associativa que detalha produtos, quantidades e preço praticado na venda. |
+| **`PAGAMENTO`** | Audita método, valor, data e status de aprovação financeira do pedido. |
+| **`ENTREGA`** | Gerencia logística, transportadora, código de rastreamento e status de envio. |
+
+---
+
+## 📊 6. Engenharia de Dados: Conceitos Aplicados
+
+### Dado Bruto vs. Informação Contextualizada
+- **`0` →** *A camiseta "Arte Sol e Lua" (Tamanho G) está esgotada* (cruzamento de `QuantidadeEstoque` com identificação do produto).
+- **`149.90` →** *O pedido #1042 da cliente Mariana Silva totalizou R$ 149,90* (vinculação de `ValorTotal` ao cliente e itens).
+- **`BR987654321SP` →** *Pedido #1042 postado nos Correios e em trânsito* (associação do código à entidade `ENTREGA`).
+- **`80060-000` →** *Curitiba (PR) concentra 45% dos pedidos do trimestre* (agrupamento geográfico de `ENDERECO` x `PEDIDO`).
+
+### Classificação Estrutural dos Dados
+- **Dados Estruturados (Armazenamento Relacional):** CPF do cliente (`VARCHAR`), Preço unitário (`DECIMAL`), Data/hora do pedido (`TIMESTAMP`).
+- **Dados Não Estruturados (Object Storage / Referência via URL):** Fotografias em alta resolução das peças (`.jpg`/`.png`), vídeos curtos de demonstração (`.mp4`) e mensagens livres/áudios de suporte.
+
+---
+
+## 🛠️ Tecnologias Previstas
+- **Modelagem:** brModelo / MySQL Workbench / Draw.io
+- **Banco de Dados:** MySQL / PostgreSQL
+- **Versionamento:** Git & GitHub
