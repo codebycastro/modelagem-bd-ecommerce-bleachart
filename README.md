@@ -121,7 +121,7 @@ Nesta etapa, o modelo de dados passou por rigorosos ciclos de auditoria relacion
 ### 📐 Diagrama Entidade-Relacionamento (DER) Lógico
 O modelo relacional final, composto pelas 7 entidades validadas (`CLIENTE`, `ENDERECO`, `PRODUTO`, `PEDIDO`, `ITEM_PEDIDO`, `PAGAMENTO` e `ENTREGA`) e pelas respetivas cardinalidades, encontra-se representado abaixo:
 
-![DER Lógico do BleachArt](./der_logico_bleachart.png)
+![DER Lógico do BleachArt](Diagramas/der_logico_bleachart.png)
 
 -----------------------------------------------------------------------
 
