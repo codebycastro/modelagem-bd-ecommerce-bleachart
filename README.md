@@ -107,29 +107,23 @@ Este projeto consiste na arquitetura de dados para gerenciar o catálogo de peç
 
 -----------------------------------------------------------------------
 
-## Etapa 3: Modelagem Lógica e Normalização (1NF, 2NF e 3NF)
+## ## Etapa 3: Modelagem Lógica e Normalização (1FN, 2FN e 3FN)
 
-### 🧩 Processo de Normalização Aplicado
+Nesta etapa, o modelo de dados passou por rigorosos ciclos de auditoria relacional, garantindo total conformidade com as Formas Normais e a eliminação de redundâncias e anomalias operacionais.
 
-* **Primeira Forma Normal (1NF - Atomicidade):** Eliminação de grupos repetitivos e atributos multivalorizados. A lista de produtos de uma compra foi extraída da tabela `PEDIDO` para a entidade associativa `ITEM_PEDIDO`, garantindo valores atômicos em todas as colunas.
-* **Segunda Forma Normal (2NF - Dependência Funcional Total):** Remoção de dependências parciais. Na entidade associativa `ITEM_PEDIDO`, os atributos `Quantidade` e `PrecoPraticado` dependem integralmente da relação entre `PedidoID` e `ProdutoID`, evitando anomalias de atualização.
-* **Terceira Forma Normal (3NF - Eliminação de Dependência Transitiva):** Isolamento de atributos que não dependem diretamente da chave primária:
-  * **Decomposição de `ENDERECO`:** Dados de localização (`CEP`, `Logradouro`, `Cidade`, `Estado`) foram separados de `CLIENTE`, eliminando dependência transitiva e permitindo múltiplos endereços por usuário.
-  * **Modularização de `PAGAMENTO` e `ENTREGA`:** Dados financeiros e logísticos foram desacoplados de `PEDIDO`, mantendo regras específicas de transação e rastreamento isoladas via chave estrangeira (`PedidoID`).
+### 🔄 Processo de Normalización Aplicado
+* **Primeira Forma Normal (1FN - Atomicidade):** Garantida a atomicidade de todos os atributos e eliminação de valores multivalorados ou grupos repetitivos. A lista de itens de uma compra foi isolada na entidade associativa `ITEM_PEDIDO`.
+* **Segunda Forma Normal (2FN - Dependência Funcional Total):** Validação de que todas as colunas não-chave dependem integralmente da chave primária. Como todas as 7 entidades utilizam chaves primárias simples (identificadores únicos/surrogate), o modelo atende nativamente à 2FN sem dependências parciais.
+* **Terceira Forma Normal (3FN - Eliminação de Dependência Transitiva):** Auditoria concluída e sem anomalias, assegurando que nenhum atributo não-chave depende de outro atributo não-chave. Foram isolados:
+  * **Domínio de Endereços (`ENDERECO`):** Separação dos dados de localização para evitar dependências transitivas em relação ao cliente ou pedido.
+  * **Domínios Logístico e Financeiro (`PAGAMENTO` e `ENTREGA`):** Desacoplamento de dados de transações e transporte da tabela central de pedidos através de chaves estrangeiras (`PedidoID`).
 
-### 🛡️ Decisões Arquiteturais e Integridade
-
-* **Preservação de Histórico (`PrecoPraticado`):** O valor unitário no momento da compra é gravado em `ITEM_PEDIDO`, blindando pedidos antigos contra reajustes futuros na tabela `PRODUTO`.
-* **Integridade Referencial:** Todas as chaves estrangeiras (`FK`) garantem consistência estrita entre clientes, endereços, pedidos, itens, pagamentos e entregas.
-
------------------------------------------------------------------------
-
-## 📐 Diagrama Entidade-Relacionamento (DER) Lógico
-O modelo lógico normalizado está representado na imagem abaixo:
+### 📐 Diagrama Entidade-Relacionamento (DER) Lógico
+O modelo relacional final, composto pelas 7 entidades validadas (`CLIENTE`, `ENDERECO`, `PRODUTO`, `PEDIDO`, `ITEM_PEDIDO`, `PAGAMENTO` e `ENTREGA`) e pelas respetivas cardinalidades, encontra-se representado abaixo:
 
 ![DER Lógico do BleachArt](./der_logico_bleachart.png)
 
----
+-----------------------------------------------------------------------
 
 ## 🛠️ Tecnologias e Ferramentas
 * **Modelagem e Diagramação:** [dbdiagram.io](https://dbdiagram.io/) (DBML)
