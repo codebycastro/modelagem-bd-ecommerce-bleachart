@@ -9,7 +9,7 @@ Projeto completo de concepção, análise de requisitos e modelagem de banco de 
 ## 🗺️ Roadmap do Projeto
 
 - [x] **Etapa 1:** Definição do Minimundo, Escopo, Atores, Processos e Análise de Dados
-- [ ] **Etapa 2:** Modelagem Conceitual (Diagrama Entidade-Relacionamento - DER)
+- [x] **Etapa 2:** Modelagem Conceitual (Diagrama Entidade-Relacionamento - DER)
 - [ ] **Etapa 3:** Modelagem Lógica e Normalização (1NF, 2NF e 3NF)
 - [ ] **Etapa 4:** Implementação Física (Scripts DDL `CREATE TABLE`, DML `INSERT` e Consultas `SELECT`)
 
