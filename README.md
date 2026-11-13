@@ -10,7 +10,7 @@ Projeto completo de concepção, análise de requisitos e modelagem de banco de 
 
 - [x] **Etapa 1:** Definição do Minimundo, Escopo, Atores, Processos e Análise de Dados
 - [x] **Etapa 2:** Modelagem Conceitual (Diagrama Entidade-Relacionamento - DER)
-- [ ] **Etapa 3:** Modelagem Lógica e Normalização (1NF, 2NF e 3NF)
+- [x] **Etapa 3:** Modelagem Lógica e Normalização (1NF, 2NF e 3NF)
 - [ ] **Etapa 4:** Implementação Física (Scripts DDL `CREATE TABLE`, DML `INSERT` e Consultas `SELECT`)
 
 -----------------------------------------------------------------------
@@ -124,7 +124,13 @@ Este projeto consiste na arquitetura de dados para gerenciar o catálogo de peç
 
 -----------------------------------------------------------------------
 
-## 🛠️ Tecnologias Previstas
-- **Modelagem:** brModelo / MySQL Workbench / Draw.io
-- **Banco de Dados:** MySQL / PostgreSQL
-- **Versionamento:** Git & GitHub
+## 📐 Diagrama Entidade-Relacionamento (DER) Lógico
+O modelo lógico normalizado está representado na imagem abaixo:
+
+![DER Lógico do BleachArt](./der_logico_bleachart.png)
+
+---
+
+## 🛠️ Tecnologias e Ferramentas
+* **Modelagem e Diagramação:** [dbdiagram.io](https://dbdiagram.io/) (DBML)
+* **Gestão de Versão:** Git & GitHub
