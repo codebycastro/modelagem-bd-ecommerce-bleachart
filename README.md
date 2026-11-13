@@ -107,11 +107,11 @@ Este projeto consiste na arquitetura de dados para gerenciar o catálogo de peç
 
 -----------------------------------------------------------------------
 
-## ## Etapa 3: Modelagem Lógica e Normalização (1FN, 2FN e 3FN)
+## Etapa 3: Modelagem Lógica e Normalização (1FN, 2FN e 3FN)
 
 Nesta etapa, o modelo de dados passou por rigorosos ciclos de auditoria relacional, garantindo total conformidade com as Formas Normais e a eliminação de redundâncias e anomalias operacionais.
 
-### 🔄 Processo de Normalización Aplicado
+### 🔄 Processo de Normalização Aplicado
 * **Primeira Forma Normal (1FN - Atomicidade):** Garantida a atomicidade de todos os atributos e eliminação de valores multivalorados ou grupos repetitivos. A lista de itens de uma compra foi isolada na entidade associativa `ITEM_PEDIDO`.
 * **Segunda Forma Normal (2FN - Dependência Funcional Total):** Validação de que todas as colunas não-chave dependem integralmente da chave primária. Como todas as 7 entidades utilizam chaves primárias simples (identificadores únicos/surrogate), o modelo atende nativamente à 2FN sem dependências parciais.
 * **Terceira Forma Normal (3FN - Eliminação de Dependência Transitiva):** Auditoria concluída e sem anomalias, assegurando que nenhum atributo não-chave depende de outro atributo não-chave. Foram isolados:
