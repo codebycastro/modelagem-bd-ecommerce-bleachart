@@ -101,7 +101,7 @@ Este projeto consiste na arquitetura de dados para gerenciar o catálogo de peç
 * **CLIENTE 1 : N ENDERECO**: Um cliente pode possuir múltiplos endereços cadastrados, mas cada endereço pertence a um único cliente.
 * **CLIENTE 1 : N PEDIDO**: Um cliente pode realizar vários pedidos ao longo do tempo, mas cada pedido é efetuado por um único cliente.
 * **PEDIDO N : 1 ENDERECO**: Um pedido é vinculado a um endereço de entrega específico, enquanto um endereço pode atender a vários pedidos.
-* **PEDIDO 1 : N ITEM_PEDIDO N : 1 PRODUTO**: Relação N para M resolvida pela entidade associativa `ITEM_PEDIZO`, onde um pedido contém vários itens e cada item referencia um produto do catálogo.
+* **PEDIDO 1 : N ITEM_PEDIDO N : 1 PRODUTO**: Relação N para M resolvida pela entidade associativa `ITEM_PEDIDO`, onde um pedido contém vários itens e cada item referencia um produto do catálogo.
 * **PEDIDO 1 : 1 PAGAMENTO**: Cada pedido possui exatamente uma transação financeira correspondente.
 * **PEDIDO 1 : 1 ENTREGA**: Cada pedido gera exatamente um registro logístico de rastreio e envio.
 
