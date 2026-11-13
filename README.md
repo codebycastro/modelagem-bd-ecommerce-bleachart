@@ -2,9 +2,9 @@
 
 Projeto completo de concepção, análise de requisitos e modelagem de banco de dados relacional para uma loja virtual especializada em vestuário personalizado e peças artesanais exclusivas.
 
-> **Status do Projeto:** 🚧 Em desenvolvimento contínuo (Etapa 2 concluída)
+> **Status do Projeto:** 🚧 Em desenvolvimento contínuo (Etapa 1 e 2 concluída)
 
----
+-----------------------------------------------------------------------
 
 ## 🗺️ Roadmap do Projeto
 
@@ -13,7 +13,9 @@ Projeto completo de concepção, análise de requisitos e modelagem de banco de 
 - [ ] **Etapa 3:** Modelagem Lógica e Normalização (1NF, 2NF e 3NF)
 - [ ] **Etapa 4:** Implementação Física (Scripts DDL `CREATE TABLE`, DML `INSERT` e Consultas `SELECT`)
 
----
+-----------------------------------------------------------------------
+
+**Etapa 1:** Definição do Minimundo, Escopo, Atores, Processos e Análise de Dados
 
 ## 🎯 1. Visão Geral e Objetivos
 
@@ -80,7 +82,30 @@ Este projeto consiste na arquitetura de dados para gerenciar o catálogo de peç
 - **Dados Estruturados (Armazenamento Relacional):** CPF do cliente (`VARCHAR`), Preço unitário (`DECIMAL`), Data/hora do pedido (`TIMESTAMP`).
 - **Dados Não Estruturados (Object Storage / Referência via URL):** Fotografias em alta resolução das peças (`.jpg`/`.png`), vídeos curtos de demonstração (`.mp4`) e mensagens livres/áudios de suporte.
 
----
+-----------------------------------------------------------------------
+
+**Etapa 2:** Modelagem Conceitual (Diagrama Entidade-Relacionamento - DER)
+
+### 📋 Detalhamento da Modelagem Conceitual (DER)
+
+#### 1. Relação de Entidades e Atributos
+* **CLIENTE**: `ClienteID (PK)`, `Nome`, `Cpf`, `Email`, `Telefone`
+* **ENDERECO**: `EnderecoID (PK)`, `ClienteID (FK)`, `CEP`, `Logradouro`, `Numero`, `Cidade`, `Estado`
+* **PRODUTO**: `ProdutoID (PK)`, `Nome`, `Categoria`, `Tamanho`, `PrecoUnitario`, `Estoque`
+* **PEDIDO**: `PedidoID (PK)`, `ClienteID (FK)`, `EnderecoID (FK)`, `DataPedido`, `StatusPedido`, `ValorTotal`
+* **ITEM_PEDIDO**: `ItemPedidoID (PK)`, `PedidoID (FK)`, `ProdutoID (FK)`, `Quantidade`, `PrecoPraticado`
+* **PAGAMENTO**: `PagamentoID (PK)`, `PedidoID (FK)`, `MetodoPagamento`, `ValorPago`, `StatusPagamento`, `DataPagamento`
+* **ENTREGA**: `EntregaID (PK)`, `PedidoID (FK)`, `Transportadora`, `CodigoRastreamento`, `StatusEntrega`
+
+#### 2. Relacionamentos e Cardinalidades
+* **CLIENTE 1 : N ENDERECO**: Um cliente pode possuir múltiplos endereços cadastrados, mas cada endereço pertence a um único cliente.
+* **CLIENTE 1 : N PEDIDO**: Um cliente pode realizar vários pedidos ao longo do tempo, mas cada pedido é efetuado por um único cliente.
+* **PEDIDO N : 1 ENDERECO**: Um pedido é vinculado a um endereço de entrega específico, enquanto um endereço pode atender a vários pedidos.
+* **PEDIDO 1 : N ITEM_PEDIDO N : 1 PRODUTO**: Relação N para M resolvida pela entidade associativa `ITEM_PEDIZO`, onde um pedido contém vários itens e cada item referencia um produto do catálogo.
+* **PEDIDO 1 : 1 PAGAMENTO**: Cada pedido possui exatamente uma transação financeira correspondente.
+* **PEDIDO 1 : 1 ENTREGA**: Cada pedido gera exatamente um registro logístico de rastreio e envio.
+
+-----------------------------------------------------------------------
 
 ## 🛠️ Tecnologias Previstas
 - **Modelagem:** brModelo / MySQL Workbench / Draw.io
