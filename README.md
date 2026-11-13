@@ -2,7 +2,7 @@
 
 Projeto completo de concepção, análise de requisitos e modelagem de banco de dados relacional para uma loja virtual especializada em vestuário personalizado e peças artesanais exclusivas.
 
-> **Status do Projeto:** 🚧 Em desenvolvimento contínuo (Etapa 1 e 2 concluída)
+> **Status do Projeto:** 🚧 Em desenvolvimento contínuo (Etapa 1, 2 e 3 concluída)
 
 -----------------------------------------------------------------------
 
@@ -104,6 +104,23 @@ Este projeto consiste na arquitetura de dados para gerenciar o catálogo de peç
 * **PEDIDO 1 : N ITEM_PEDIDO N : 1 PRODUTO**: Relação N para M resolvida pela entidade associativa `ITEM_PEDIDO`, onde um pedido contém vários itens e cada item referencia um produto do catálogo.
 * **PEDIDO 1 : 1 PAGAMENTO**: Cada pedido possui exatamente uma transação financeira correspondente.
 * **PEDIDO 1 : 1 ENTREGA**: Cada pedido gera exatamente um registro logístico de rastreio e envio.
+
+-----------------------------------------------------------------------
+
+## Etapa 3: Modelagem Lógica e Normalização (1NF, 2NF e 3NF)
+
+### 🧩 Processo de Normalização Aplicado
+
+* **Primeira Forma Normal (1NF - Atomicidade):** Eliminação de grupos repetitivos e atributos multivalorizados. A lista de produtos de uma compra foi extraída da tabela `PEDIDO` para a entidade associativa `ITEM_PEDIDO`, garantindo valores atômicos em todas as colunas.
+* **Segunda Forma Normal (2NF - Dependência Funcional Total):** Remoção de dependências parciais. Na entidade associativa `ITEM_PEDIDO`, os atributos `Quantidade` e `PrecoPraticado` dependem integralmente da relação entre `PedidoID` e `ProdutoID`, evitando anomalias de atualização.
+* **Terceira Forma Normal (3NF - Eliminação de Dependência Transitiva):** Isolamento de atributos que não dependem diretamente da chave primária:
+  * **Decomposição de `ENDERECO`:** Dados de localização (`CEP`, `Logradouro`, `Cidade`, `Estado`) foram separados de `CLIENTE`, eliminando dependência transitiva e permitindo múltiplos endereços por usuário.
+  * **Modularização de `PAGAMENTO` e `ENTREGA`:** Dados financeiros e logísticos foram desacoplados de `PEDIDO`, mantendo regras específicas de transação e rastreamento isoladas via chave estrangeira (`PedidoID`).
+
+### 🛡️ Decisões Arquiteturais e Integridade
+
+* **Preservação de Histórico (`PrecoPraticado`):** O valor unitário no momento da compra é gravado em `ITEM_PEDIDO`, blindando pedidos antigos contra reajustes futuros na tabela `PRODUTO`.
+* **Integridade Referencial:** Todas as chaves estrangeiras (`FK`) garantem consistência estrita entre clientes, endereços, pedidos, itens, pagamentos e entregas.
 
 -----------------------------------------------------------------------
 
