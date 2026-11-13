@@ -15,7 +15,7 @@ Projeto completo de concepção, análise de requisitos e modelagem de banco de 
 
 -----------------------------------------------------------------------
 
-**Etapa 1:** Definição do Minimundo, Escopo, Atores, Processos e Análise de Dados
+## Etapa 1: Definição do Minimundo, Escopo, Atores, Processos e Análise de Dados
 
 ## 🎯 1. Visão Geral e Objetivos
 
@@ -84,7 +84,7 @@ Este projeto consiste na arquitetura de dados para gerenciar o catálogo de peç
 
 -----------------------------------------------------------------------
 
-**Etapa 2:** Modelagem Conceitual (Diagrama Entidade-Relacionamento - DER)
+## Etapa 2: Modelagem Conceitual (Diagrama Entidade-Relacionamento - DER)
 
 ### 📋 Detalhamento da Modelagem Conceitual (DER)
 
