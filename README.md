@@ -2,7 +2,7 @@
 
 Projeto completo de concepção, análise de requisitos e modelagem de banco de dados relacional para uma loja virtual especializada em vestuário personalizado e peças artesanais exclusivas.
 
-> **Status do Projeto:** 🚧 Em desenvolvimento contínuo (Etapa 1 concluída)
+> **Status do Projeto:** 🚧 Em desenvolvimento contínuo (Etapa 2 concluída)
 
 ---
 
